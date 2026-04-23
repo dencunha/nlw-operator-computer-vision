@@ -1,0 +1,276 @@
+:root {
+    /* Cores Premium do Projeto Rocketseat */
+    --bg-color-1: #0e1223;
+    /* Azul bem escuro das bordas */
+    --bg-color-2: #141930;
+    /* Azul escuro do centro */
+    --card-bg: #1a203a;
+    /* Fundo dos painéis translúcidos */
+
+    --text-main: #f8fafc;
+    --text-muted: #8493a8;
+    --accent: #2deba0;
+    /* Verde água clarinho para porcentagens */
+
+    /* Gradiente do Título (Lilás azulado -> Verde água clarinho) */
+    --title-gradient: linear-gradient(to right, #a78bfa, #818cf8, #2deba0);
+
+    /* Sombra esfumada azul clara para o pulso (Exatamente como o professor) */
+    --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.8);
+}
+
+.fps-badge {
+    background: rgba(45, 235, 160, 0.15);
+    color: var(--accent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    border: 1px solid rgba(45, 235, 160, 0.3);
+    box-shadow: 0 0 10px rgba(45, 235, 160, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    /* RESTATURADO: Gradiente Radial Profundo no Background */
+    background: radial-gradient(circle at center, var(--bg-color-2) 0%, var(--bg-color-1) 100%);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    margin: 0;
+    /* RESTATURADO E CORRIGIDO: Gradiente do Título (Lilás -> Verde Água) */
+    background: var(--title-gradient);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 800;
+}
+
+.header p {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Painel da Câmera */
+.video-card {
+    background: var(--card-bg);
+    padding: 0.8rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+#canvas {
+    border-radius: 1rem;
+    display: block;
+}
+
+/* Coluna Direita (Os 2 painéis) */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 360px;
+}
+
+.data-card {
+    background: var(--card-bg);
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    min-height: 120px;
+}
+
+.card-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+/* Linhas do Live Feed Data */
+.feed-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.6rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.feed-label {
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: capitalize;
+    color: #b1b9c9;
+}
+
+.feed-value {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* Estilos para os Controles (Slider e Checkbox) */
+.settings-card {
+    margin-top: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    min-height: auto;
+}
+
+.settings-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+}
+
+.control-group {
+    display: flex;
+}
+
+/* O Slider ocupa o máximo de espaço (Proporção 3:1 ou flex: 1) */
+.quality-group {
+    flex-direction: column;
+    flex: 1;
+    gap: 0.8rem;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.slider-header label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+#quality-value {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* O Checkbox fica no canto direito */
+.checkbox-group {
+    flex-direction: row;
+    /* Coloca o texto e a caixinha lado a lado */
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    min-width: 140px;
+    padding-top: 1.4rem;
+    /* Empurra levemente para baixo para alinhar a caixinha com o trilho do slider */
+}
+
+.checkbox-group label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Custom Range Slider */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px;
+    box-shadow: 0 0 10px rgba(45, 235, 160, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(45, 235, 160, 0.6);
+}
+
+/* Custom Checkbox */
+input[type=checkbox] {
+    accent-color: var(--accent);
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+}
+
+/* --- A MÁGICA DA IMAGEM PULSANTE DO BONECO --- */
+#gesture-image {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: none;
+    border: none;
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.7));
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0% {
+        filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.7));
+        transform: scale(0.98);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.9));
+        transform: scale(1.02);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.7));
+        transform: scale(0.98);
+    }
+}
